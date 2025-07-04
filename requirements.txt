@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-dotenv
+openai
+azure-ai-projects
+azure-identity
+pandas
+sqlalchemy
+pyodbc
