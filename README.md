@@ -1,40 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Agentory
+
+Agentory is an AI-powered assistant designed to answer questions, calculate inventory, and streamline insights for warehouse operations. It features a modern web UI (Next.js/TypeScript) and a Python backend that leverages LLMs and connects to warehouse data sources.
+
+## Features
+
+- **Conversational AI**: Interact with an AI agent to get warehouse insights through natural language.
+- **Inventory Queries**: Ask about inventory, projected stock, capacities, and more.
+- **Multi-Warehouse Support**: Easily switch queries between different warehouse locations.
+- **Backend Intelligence**: Uses OpenAI (Azure) models for intent classification, SQL planning, summarization, and direct data retrieval.
+- **Extensible**: Modular backend with components for intent classification, SQL generation, and summarization.
+
+## Tech Stack
+
+- **Frontend**: Next.js, TypeScript, React
+- **Backend**: Python (FastAPI, OpenAI SDK, dotenv)
+- **AI Models**: Azure OpenAI (GPT-based)
+- **Others**: Virtualenv for Python dependencies
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (for the frontend)
+- Python 3.11+ (for the backend)
+- Access to Azure OpenAI and environment variables for API keys
+
+### Frontend (Next.js)
 
 ```bash
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Backend (Python)
+
+```bash
+cd agent-backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Set up .env file with your Azure OpenAI credentials
+python agent.py
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Connecting Frontend and Backend
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The frontend sends chat requests to the backend at `http://localhost:8000/chat`. Make sure both servers are running.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Project Structure
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```
+agentory/
+├── agent-backend/           # Python backend with agent logic
+│   ├── agent.py             # Main entry point for AI agent
+│   ├── intent_classifier.py # Intent classification utility
+│   ├── sql_planner.py       # SQL planner for database queries
+│   ├── summarizer.py        # For summarizing responses
+│   └── venv/                # Python virtual environment
+├── src/
+│   └── pages/
+│       └── index.tsx        # Next.js frontend (main UI)
+└── README.md
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Example Questions
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- “For material MAT-0152, what is its shelf life?”
+- “How much net quantity of outbound in Singapore warehouse this week?”
+- “What is the projected inventory in Singapore today?”
