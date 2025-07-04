@@ -113,3 +113,11 @@ agentory/
 
 >  Built for Bootcathon 2025 — GenAI Track  
 >  Designed for real-world enterprise use
+
+## System Instructions & Prompt Location
+The core instruction prompts (also known as system prompts) for the agent are configured directly inside Azure OpenAI Assistants.
+
+This means:
+The behavior of each agent tool — including the Intent Classifier, SQL Planner, and Summarizer — is controlled via predefined instructions inside Azure.
+These prompts define the agent’s role, response format, expected output structure (e.g., SQL string, JSON intent), and reasoning style.
+The local code only handles message routing and logging — actual “thinking” is done through assistants hosted in Azure.
