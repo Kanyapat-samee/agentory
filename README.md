@@ -33,7 +33,6 @@ Agentory processes your intent, generates the appropriate SQL, runs it securely,
 
 ### Prerequisites
 
-- Node.js (for the frontend)
 - Python 3.11+ (for the backend)
 - Access to Azure OpenAI and environment variables for API keys
 
@@ -111,8 +110,7 @@ agentory/
 - “How much net quantity of outbound in Singapore warehouse this week?”
 - “What is the projected inventory in Singapore today?”
 
->  Built for Bootcathon 2025 — GenAI Track  
->  Designed for real-world enterprise use
+>  Built for Bootcathon 2025 — GenAI Track 
 
 ## System Instructions & Prompt Location
 The core instruction prompts (also known as system prompts) for the agent are configured directly inside Azure OpenAI Assistants.
